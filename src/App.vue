@@ -26,11 +26,7 @@ export default {
   },
   data() {
     return {
-      todos:[
-        {id:'0001',title:'吃饭',done:true},
-        {id:'0002',title:'睡觉',done:true},
-        {id:'0003',title:'打豆豆',done:true},
-      ]
+      todos:JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods:{
@@ -62,6 +58,15 @@ export default {
     //清除所有已经完成的todo
     clearAllTodo(){
       this.todos = this.todos.filter((todo)=> !todo.done);
+    }
+  },
+  watch:{
+    todos:{
+      handler(value){
+        //修改本地存储
+        localStorage.setItem('todos',JSON.stringify(value));
+      },
+      deep:true
     }
   }
 }
