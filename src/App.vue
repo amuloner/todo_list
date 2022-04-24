@@ -4,7 +4,7 @@
       <div class="todo-wrap">
         
         <TodoHeader @addTodo="addTodo"></TodoHeader>
-        <TodoList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></TodoList>
+        <TodoList :todos="todos"></TodoList>
         <TodoFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></TodoFooter>
       </div>
     </div>
@@ -68,6 +68,13 @@ export default {
       },
       deep:true
     }
+  },
+  mounted() {
+    this.$bus.$on('checkedTodo',this.checkTodo);
+    this.$bus.$on('deleteTodo',this.deleteTodo);
+  },
+  beforeDestroy(){
+    this.$bus.$off(['checkedTodo','deleteTodo'])
   }
 }
 </script>

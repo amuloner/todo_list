@@ -14,15 +14,15 @@
 <script>
     export default {
         name: 'TodoItem',
-        props:['todoObj','checkTodo','deleteTodo'],
+        props:['todoObj'],
         methods: {
           handleCheck(id){
             //通知app将对应done值取反
-            this.checkTodo(id);
+            this.$bus.$emit('checkedTodo',id);
           },
           handleDelete(id){
             if(confirm("确定删除吗？")){
-              this.deleteTodo(id);
+              this.$bus.$emit('deleteTodo',id);
             }
           },
           handleEdit(todoObj){
