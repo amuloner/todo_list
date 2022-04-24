@@ -3,7 +3,15 @@
     <li>
     <label>
       <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)"/>
-      <span>{{todoObj.title}}</span>
+      <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
+      <input 
+      v-show="todoObj.isEdit" 
+      type="text" 
+      :value="todoObj.title" 
+      @blur="handleBlur($event,todoObj)"
+      @keyup.enter="handleBlur($event,todoObj)"
+      ref="input"
+      >
     </label>
     <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
     <button class="btn btn-edit" @click="handleEdit(todoObj)" v-show="!todoObj.isEdit">编辑</button>
@@ -26,9 +34,29 @@
             }
           },
           handleEdit(todoObj){
-            console.log(todoObj);
+            if(todoObj.hasOwnProperty.call('isEdit')){
+              todoObj.isEdit = true;
+            }else{
+              this.$set(todoObj,'isEdit',true);
+            }
+            this.$nextTick(function(){
+              this.$refs.input.focus();
+            })
+          },
+          handleBlur(e,todoObj){
+            todoObj.isEdit = false;
+            if(!e.target.value.trim()) return alert("输入不能为空！");
+            this.$bus.$emit('updateTodo',todoObj.id,e.target.value)
           }
         },
+        //处理修改框自动获取焦点--使用自定义指令
+        // directives: {
+        //   focus: {
+        //     update(el){
+        //       el.focus();
+        //     }
+        //   }
+        // }
     }
 </script>
 

@@ -43,6 +43,15 @@ export default {
         }
       })
     },
+    //更新todo
+    updateTodo(id,title){
+      this.todos.forEach((todo)=>{
+        if(todo.id === id){
+          todo.title = title;
+          return;
+        }
+      })
+    },
     //删除todo
     deleteTodo(id){
       this.todos = this.todos.filter((todo)=>{
@@ -72,6 +81,7 @@ export default {
   mounted() {
     this.$bus.$on('checkedTodo',this.checkTodo);
     this.$bus.$on('deleteTodo',this.deleteTodo);
+    this.$bus.$on('updateTodo',this.updateTodo)
   },
   beforeDestroy(){
     this.$bus.$off(['checkedTodo','deleteTodo'])

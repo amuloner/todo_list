@@ -20,6 +20,7 @@
             const todoObj = {
               id:nanoid(),
               title:this.title,
+              isEdit:false,
               done:false
             };
             
