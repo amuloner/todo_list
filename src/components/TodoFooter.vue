@@ -12,7 +12,7 @@
 <script>
     export default {
         name: 'TodoFooter',
-        props:['todos','checkAllTodo','clearAllTodo'],
+        props:['todos'],
         computed:{
           total(){
             return this.todos.length;
@@ -25,14 +25,14 @@
               return this.doneTotal === this.total && this.total > 0
             },
             set(value){
-              this.checkAllTodo(value);
+              this.$emit("checkAllTodo",value);
             }
           }
         },
         methods: {
           clearAll(){
             if(confirm("确认清除？"))
-              this.clearAllTodo();
+              this.$emit('clearAllTodo');
           }
         },
     }

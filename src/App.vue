@@ -3,9 +3,9 @@
     <div class="todo-container">
       <div class="todo-wrap">
         
-        <TodoHeader :addTodo="addTodo"></TodoHeader>
+        <TodoHeader @addTodo="addTodo"></TodoHeader>
         <TodoList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></TodoList>
-        <TodoFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"></TodoFooter>
+        <TodoFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></TodoFooter>
       </div>
     </div>
   </div>
