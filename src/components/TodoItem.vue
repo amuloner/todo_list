@@ -1,21 +1,21 @@
 <template>
   <transition name="todo" appear>
     <li>
-    <label>
-      <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)"/>
-      <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
-      <input 
-      v-show="todoObj.isEdit" 
-      type="text" 
-      :value="todoObj.title" 
-      @blur="handleBlur($event,todoObj)"
-      @keyup.enter="handleBlur($event,todoObj)"
-      ref="input"
-      >
-    </label>
-    <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
-    <button class="btn btn-edit" @click="handleEdit(todoObj)" v-show="!todoObj.isEdit">编辑</button>
-  </li>
+      <label>
+        <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)"/>
+        <span v-show="!todoObj.isEdit">{{todoObj.title}}</span>
+        <input 
+        v-show="todoObj.isEdit" 
+        type="text" 
+        :value="todoObj.title" 
+        @blur="handleBlur($event,todoObj)"
+        @keyup.enter="handleBlur($event,todoObj)"
+        ref="input"
+        >
+      </label>
+      <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
+      <button class="btn btn-edit" @click="handleEdit(todoObj)" v-show="!todoObj.isEdit">编辑</button>
+    </li>
   </transition>
 </template>
 
@@ -96,6 +96,9 @@ li:hover{
 li:hover button{
   display: block;
 }
+
+
+/* 动画 */
 .todo-enter-active{
   animation: todo 0.5s linear;
 }
@@ -104,10 +107,10 @@ li:hover button{
 }
 @keyframes todo {
   from{
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
   }
   to{
-    transform: translateX(0px);
+    /* transform: translateX(0px); */
   }
 }
 </style>
