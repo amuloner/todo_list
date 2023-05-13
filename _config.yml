@@ -1,4 +1,4 @@
 deploy:
   type: git
-  repository: git@github.com:AnLoner/AnLoner.github.io.git
+  repository: git@github.com:amuloner/amuloner.github.io.git
   branch: master
